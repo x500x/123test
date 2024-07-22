@@ -8,31 +8,25 @@
   
 <Script Language="JavaScript">
   //alert(GetQueryString("q"));
-const headers = new Headers();
-headers.append('Content-Type', 'application/x-www-form-urlencoded');
-headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjIwOTM1MTgsImlhdCI6MTcyMTQ4ODcxOCwiaWQiOjE4MzczNzg4NTcsIm1haWwiOiIiLCJuaWNrbmFtZSI6IjE4OTcyOTA4NjE3Iiwic3VwcGVyIjpmYWxzZSwidXNlcm5hbWUiOjE4OTcyOTA4NjE3LCJ2IjowfQ.S3ICfokc-JGbr-8cil_onQhe6mUNBJtKHsRX3_i2ZTs');
-headers.append('Platform', 'open_platform');
-headers.append('app-version', '3');
-headers.append('Cookie', 'aliyungf_tc=1e32b8f370d1df293501ad648eb46c1f2420a4342346b260fc1338ecd40624c4');
+const data ='driveId=0&etag=d41d8cd98f00b204e9800998ecf8427e&fileName=5.txt&parentFileId=0&size=0&type=0';
 
-const data = new URLSearchParams();
-data.append('driveId', '0');
-data.append('etag', 'd41d8cd98f00b204e9800998ecf8427e');
-data.append('fileName', '5.txt');
-data.append('parentFileId', '0');
-data.append('size', '0');
-data.append('type', '0');
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-const options = {
-  method: 'POST',
-  headers: headers,
-  body: data
-};
+xhr.addEventListener('readystatechange', function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
 
-fetch('https://www.123pan.com/b/api/file/upload_request', options)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+xhr.open('POST', 'https://www.123pan.com/b/api/file/upload_request');
+xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjIwOTM1MTgsImlhdCI6MTcyMTQ4ODcxOCwiaWQiOjE4MzczNzg4NTcsIm1haWwiOiIiLCJuaWNrbmFtZSI6IjE4OTcyOTA4NjE3Iiwic3VwcGVyIjpmYWxzZSwidXNlcm5hbWUiOjE4OTcyOTA4NjE3LCJ2IjowfQ.S3ICfokc-JGbr-8cil_onQhe6mUNBJtKHsRX3_i2ZTs');
+xhr.setRequestHeader('Platform', 'open_platform');
+xhr.setRequestHeader('app-version', '3');
+xhr.setRequestHeader('Cookie', 'aliyungf_tc=1e32b8f370d1df293501ad648eb46c1f2420a4342346b260fc1338ecd40624c4');
+
+xhr.send(data);
 alert("abc");
 </Script>
   
