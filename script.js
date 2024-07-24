@@ -14,13 +14,24 @@ const data ='driveId=0&etag=d41d8cd98f00b204e9800998ecf8427e&fileName=6.txt&pare
 
 const xhr = new XMLHttpRequest();
 xhr.withCredentials = true;
-
-xhr.addEventListener('readystatechange', function () {
-  if (this.readyState === this.DONE) {
+/*
+//xhr.addEventListener('readystatechange', function () {
+  //if (this.readyState === this.DONE) {
     //console.log(this.responseText);
-    document.write("msg:"+this.responseText);
-  }
-});
+  //document.write("msg:"+xhr.responseText);
+ // }
+//});
+*/
+
+xhr.onreadystatechange = function () {
+  // 如果不是下载完数据，就直接返回
+  if (xhr.readyState !== XMLHttpRequest.DONE) return;
+  // if (xhr.readyState !== 4) return;
+ 
+  // 默认拿到的是字符串对象
+  // 将字符串转成JSON对象(js对象)
+  document.write(JSON.parse(xhr.response));
+};
 
 xhr.open('POST', 'https://www.123pan.com/b/api/file/upload_request');
 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
