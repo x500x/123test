@@ -16,8 +16,8 @@ const xhr = new XMLHttpRequest();
 xhr.withCredentials = true;
 
 xhr.addEventListener('readystatechange', function () {
-  if (this.readyState === this.DONE) {
-    document.write(this.responseText);
+  if (xhr.readyState === this.DONE) {
+    document.write(xhr.responseText);
   }
 });
 
