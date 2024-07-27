@@ -13,7 +13,7 @@ function CreateFile() {
 const data = 'driveId=0&etag=d41d8cd98f00b204e9800998ecf8427e&fileName=txt&parentFileId=0&size=0&type=0';
 
 const xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
+xhr.withCredentials = false;
 
 xhr.addEventListener('readystatechange', function () {
   if (xhr.readyState === this.DONE) {
