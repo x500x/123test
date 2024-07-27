@@ -10,35 +10,24 @@ function GetQueryString(name) {
 }
 
 function CreateFile() {
-const data ='driveId=0&etag=d41d8cd98f00b204e9800998ecf8427e&fileName=6.txt&parentFileId=0&size=0&type=0';
+const data = 'driveId=0&etag=d41d8cd98f00b204e9800998ecf8427e&fileName=txt&parentFileId=0&size=0&type=0';
 
 const xhr = new XMLHttpRequest();
 xhr.withCredentials = true;
-/*
-//xhr.addEventListener('readystatechange', function () {
-  //if (this.readyState === this.DONE) {
-    //console.log(this.responseText);
-  //document.write("msg:"+xhr.responseText);
- // }
-//});
-*/
 
-xhr.onreadystatechange = function () {
-  // 如果不是下载完数据，就直接返回
-  if (xhr.readyState !== XMLHttpRequest.DONE) return;
-  // if (xhr.readyState !== 4) return;
- 
-  // 默认拿到的是字符串对象
-  // 将字符串转成JSON对象(js对象)
-  document.write(JSON.parse(xhr.response));
-};
+xhr.addEventListener('readystatechange', function () {
+  if (this.readyState === this.DONE) {
+    document.write(this.responseText);
+  }
+});
 
 xhr.open('POST', 'https://www.123pan.com/b/api/file/upload_request');
+xhr.setRequestHeader('User-Agent', 'Reqable/2.20.2');
 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjIwOTM1MTgsImlhdCI6MTcyMTQ4ODcxOCwiaWQiOjE4MzczNzg4NTcsIm1haWwiOiIiLCJuaWNrbmFtZSI6IjE4OTcyOTA4NjE3Iiwic3VwcGVyIjpmYWxzZSwidXNlcm5hbWUiOjE4OTcyOTA4NjE3LCJ2IjowfQ.S3ICfokc-JGbr-8cil_onQhe6mUNBJtKHsRX3_i2ZTs');
+xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjI0ODg3MTksImlhdCI6MTcyMTg4MzkxOSwiaWQiOjE4MzczNzg4NTcsIm1haWwiOiIiLCJuaWNrbmFtZSI6IjE4OTcyOTA4NjE3Iiwic3VwcGVyIjpmYWxzZSwidXNlcm5hbWUiOjE4OTcyOTA4NjE3LCJ2IjowfQ.v5F4GY_nKvasmr9HbGPCgyX8mxhgvu9aNgSi6a04Ygg');
 xhr.setRequestHeader('Platform', 'open_platform');
 xhr.setRequestHeader('app-version', '3');
-
+xhr.setRequestHeader('Cookie', 'aliyungf_tc=1e32b8f370d1df293501ad648eb46c1f2420a4342346b260fc1338ecd40624c4');
 
 xhr.send(data);
 }
