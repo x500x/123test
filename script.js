@@ -8,11 +8,37 @@ function GetQueryString(name) {
     r = null; 
     return context == null || context == "" || context == "undefined" ? "" : context; 
 }
-/*
+
+function CreateXMLHttpRequest()
+{
+var xhr; //定义XMLHttpRequest对象
+if(window.ActiveXObject)
+//如果当前浏览器支持Active Xobject，则创建ActiveXObject对象
+{
+  //xhr = new ActiveXObject("Microsoft.XMLHTTP");
+  try {
+      xhr=new ActiveXObject("Msxml2.XMLHTTP");
+      } catch (e) {
+     try {
+       xhr = new ActiveXObject("Microsoft.XMLHTTP");
+        } catch (E) {
+          xhr = false;
+         }
+        }
+       }
+else if(window.XMLHttpRequest)
+//如果当前浏览器支持XMLHttp Request，则创建XMLHttpRequest对象
+{
+  xhr = new XMLHttpRequest();
+}
+return xhr;
+}
+
+
 function CreateFile() {
 const data = 'driveId=0&etag=d41d8cd98f00b204e9800998ecf8427e&fileName=txt&parentFileId=0&size=0&type=0';
 
-const xhr = new XMLHttpRequest();
+const xhr = CreateXMLHttpRequest();
 xhr.withCredentials = false;
 
 xhr.addEventListener('readystatechange', function () {
@@ -30,7 +56,11 @@ xhr.setRequestHeader('app-version', '3');
 xhr.send(data);
 document.write('done');
 }
-*/
+
+
+
+
+/*
 
 function CreateFile() {
 const headers = new Headers();
@@ -40,7 +70,6 @@ headers.append('LoginUuid', 'edf2d4acef7d7d559e10c12d5b5baaa70fdd6b27fb22af35e48
 headers.append('App-Version', '3');
 headers.append('platform', 'web');
 headers.append('Content-Type', 'application/x-www-form-urlencoded');
-headers.append('Accept', '*/*');
 headers.append('Origin', 'https://www.123pan.com');
 
 const data = new URLSearchParams();
@@ -63,3 +92,5 @@ fetch('https://www.123pan.com/b/api/file/upload_request', options)
   .catch(error => alart('error', error));
 //document.write();
 }
+
+*/
