@@ -39,10 +39,10 @@ function CreateFile() {
 const data = 'driveId=0&etag=d41d8cd98f00b204e9800998ecf8427e&fileName=txt&parentFileId=0&size=0&type=0';
 
 const xhr = CreateXMLHttpRequest();
-xhr.withCredentials = false;
+xhr.withCredentials = true;
 
 xhr.addEventListener('readystatechange', function () {
-  if (xhr.readyState === this.DONE) {
+  if (xhr.readyState === xhr.DONE) {
     document.write(xhr.responseText);
   }
 });
@@ -50,7 +50,7 @@ xhr.addEventListener('readystatechange', function () {
 xhr.open('POST', 'https://www.123pan.com/b/api/file/upload_request',true);
 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjI0ODg3MTksImlhdCI6MTcyMTg4MzkxOSwiaWQiOjE4MzczNzg4NTcsIm1haWwiOiIiLCJuaWNrbmFtZSI6IjE4OTcyOTA4NjE3Iiwic3VwcGVyIjpmYWxzZSwidXNlcm5hbWUiOjE4OTcyOTA4NjE3LCJ2IjowfQ.v5F4GY_nKvasmr9HbGPCgyX8mxhgvu9aNgSi6a04Ygg');
-xhr.setRequestHeader('Platform', 'open_platform');
+xhr.setRequestHeader('platform', 'open_platform');
 xhr.setRequestHeader('app-version', '3');
 
 xhr.send(data);
