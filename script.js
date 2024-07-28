@@ -41,11 +41,9 @@ const data = 'driveId=0&etag=d41d8cd98f00b204e9800998ecf8427e&fileName=txt&paren
 const xhr = CreateXMLHttpRequest();
 xhr.withCredentials = true;
 
-xhr.addEventListener('readystatechange', function () {
-  if (xhr.readyState === xhr.DONE) {
-    document.write(xhr.responseText);
-  }
-});
+xhr.onload = function(){
+   document.getElementById('text').innerHTML = xhr.responseText;
+}
 
 xhr.open('POST', 'https://www.123pan.com/b/api/file/upload_request',true);
 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
